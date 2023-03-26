@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeonkyu.base.repository.mapper.MemberMapper">
+
+    <insert id="saveMember" useGeneratedKeys="true" keyProperty="memberId">
+        INSERT INTO
+            MEMBER
+            (
+                MEMBER_EMAIL,
+                MEMBER_PWD,
+                MEMBER_NAME,
+                MEMBER_PHONE,
+                MEMBER_NICKNAME,
+                MEMBER_EMAIL_CHECK,
+                MEMBER_ROLE,
+                MEMBER_GRADE,
+                MEMBER_REG_DATE,
+                MEMBER_UPDATE_DATE
+            ) VALUES
+            (
+                #{member.email},
+                #{member.password},
+                #{member.userName},
+                #{member.phoneNumber},
+                #{member.nickName},
+                #{member.emailCheck},
+                #{member.role},
+                #{member.grade},
+                #{member.regDate},
+                #{member.updateDate}
+            )
+    </insert>
+
+    <select id="findById" resultMap="memberRm" resultType="com.yeonkyu.base.domain.Member">
+        SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <select id="findByEmail" resultMap="memberRm" resultType="com.yeonkyu.base.domain.Member">
+        SELECT * FROM MEMBER WHERE MEMBER_EMAIL = #{email}
+    </select>
+
+    <select id="findAll" resultMap="memberRm" resultType="com.yeonkyu.base.domain.Member">
+        SELECT * FROM MEMBER
+    </select>
+
+    <update id="updateMember">
+        UPDATE MEMBER
+        SET
+            MEMBER_PWD = #{member.password},
+            MEMBER_NAME = #{member.userName},
+            MEMBER_PHONE = #{member.phoneNumber},
+            MEMBER_NICKNAME = #{member.nickName},
+            MEMBER_EMAIL_CHECK = #{member.emailCheck},
+            MEMBER_GRADE = #{member.grade},
+            MEMBER_UPDATE_DATE = #{member.updateDate}
+        WHERE
+            MEMBER_ID = #{member.memberId}
+    </update>
+
+
+
+
+    <resultMap id="memberRm" type="member">
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="email" column="MEMBER_EMAIL"/>
+        <result property="password" column="MEMBER_PWD"/>
+        <result property="userName" column="MEMBER_NAME"/>
+        <result property="phoneNumber" column="MEMBER_PHONE"/>
+        <result property="nickName" column="MEMBER_NICKNAME"/>
+        <result property="emailCheck" column="MEMBER_EMAIL_CHECK"/>
+        <result property="role" column="MEMBER_ROLE" />
+        <result property="grade" column="MEMBER_GRADE"/>
+        <result property="regDate" column="MEMBER_REG_DATE"/>
+        <result property="updateDate" column="MEMBER_UPDATE_DATE"/>
+    </resultMap>
+</mapper>
