@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/member/login", "/member/signup", "/resources/**", "/api/member/signup", "/member/login_proc").permitAll() // 로그인 권한은 누구나, resources 파일도 모든권한
+                    .antMatchers("/", "/member/login", "/member/signup", "/resources/**", "/member/signup_proc", "/member/login_proc").permitAll() // 로그인 권한은 누구나, resources 파일도 모든권한
                     .antMatchers("/**").hasAnyRole(roles)
                 .and()
                     .formLogin()
