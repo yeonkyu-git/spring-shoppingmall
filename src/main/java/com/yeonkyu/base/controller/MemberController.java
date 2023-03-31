@@ -33,7 +33,7 @@ public class MemberController {
         return "member/signUp";
     }
 
-    @PostMapping("/signup_proc")
+    @PostMapping("/signup")
     public String memberSignUpProcess(@ModelAttribute MemberRegisterDto form) {
         log.info("form = {}", form);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

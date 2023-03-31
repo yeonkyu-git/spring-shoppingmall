@@ -17,5 +17,5 @@ public interface MemberMapper {
 
     List<Member> findAll();
 
-    void updateMember(Member member);
+    void updateMember(@Param("member") Member member);
 }
